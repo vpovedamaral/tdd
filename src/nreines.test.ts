@@ -42,4 +42,16 @@ describe('resoudreNReines', () => {
         const solutions = resoudreNReines(3);
         expect(solutions).toEqual([]);
     });
+    test('n = 4 doit retourner 2 solutions valides', () => {
+        const solutions = resoudreNReines(4);
+        expect(solutions.length).toBe(2);
+        solutions.forEach(plateau => {
+            expect(plateau.length).toBe(4);
+            plateau.forEach(ligne => {
+                expect(ligne.length).toBe(4);
+                expect(/^[O#]+$/.test(ligne)).toBe(true);
+            });
+            expect(estPlateauValide(plateau)).toBe(true);
+        });
+    });
 });
