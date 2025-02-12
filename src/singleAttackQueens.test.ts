@@ -1,4 +1,3 @@
-// @ts-ignore
 import { genererConfigurations4DamesAttaqueUnique } from './singleAttackQueens';
 
 describe("genererConfigurations4DamesAttaqueUnique", () => {

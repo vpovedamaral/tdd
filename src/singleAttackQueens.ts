@@ -1,4 +1,4 @@
-function genererConfigurations4DamesAttaqueUnique(taille: number): string[][][] {
+export function genererConfigurations4DamesAttaqueUnique(taille: number): string[][][] {
     const configurations: string[][][] = [];
     const nbCases = taille * taille;
 
