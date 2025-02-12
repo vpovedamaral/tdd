@@ -8,6 +8,7 @@ export function resoudreNReines(taille: number): string[][] {
     const diagonalesSecondaires = new Set<number>();  // Calcul par (ligne + colonne)
 
     function placerReinesSurLigne(ligne: number): void {
+        // Si toutes les lignes sont traitées,  solution complète trouvee
         if (ligne === taille) {
             const solution: string[] = [];
             for (let i = 0; i < taille; i++) {
@@ -20,7 +21,10 @@ export function resoudreNReines(taille: number): string[][] {
             solutions.push(solution);
             return;
         }
+
+        // Essayer de placer une reine dans chaque colonne de la ligne actuelle.
         for (let colonne = 0; colonne < taille; colonne++) {
+            // Vérifier que la colonne et les diagonales ne sont pas déjà occupées.
             if (
                 colonnes.has(colonne) ||
                 diagonalesPrincipales.has(ligne - colonne) ||
@@ -28,13 +32,17 @@ export function resoudreNReines(taille: number): string[][] {
             ) {
                 continue;
             }
+
+            // Placer la reine à la position (ligne, colonne)
             positions[ligne] = colonne;
             colonnes.add(colonne);
             diagonalesPrincipales.add(ligne - colonne);
             diagonalesSecondaires.add(ligne + colonne);
 
+            // Passer à la ligne suivante
             placerReinesSurLigne(ligne + 1);
 
+            // Retirer la reine pour explorer d'autres configurations
             positions[ligne] = -1;
             colonnes.delete(colonne);
             diagonalesPrincipales.delete(ligne - colonne);
@@ -46,7 +54,7 @@ export function resoudreNReines(taille: number): string[][] {
     return solutions;
 }
 
-// Saisie utilisateur via la console
+// SAisie N via la console
 if (require.main === module) {
     const interfaceLecture = readline.createInterface({
         input: process.stdin,
