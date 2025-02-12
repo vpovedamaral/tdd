@@ -84,4 +84,9 @@ describe('resoudreNReines', () => {
         expect(solutionSet.size).toBe(solutions.length);
     });
 
+    test('Les solutions pour n = 5 doivent être uniques', () => {
+        const solutions = resoudreNReines(5);
+        const solutionSet = new Set(solutions.map(sol => sol.join(',')));
+        expect(solutionSet.size).toBe(solutions.length);
+    });
 });
