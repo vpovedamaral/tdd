@@ -78,4 +78,10 @@ describe('resoudreNReines', () => {
         const solutionSet = new Set(solutions.map(sol => sol.join(',')));
         expect(solutionSet.size).toBe(solutions.length);
     });
+    test('Les solutions pour n = 7 doivent être uniques', () => {
+        const solutions = resoudreNReines(7);
+        const solutionSet = new Set(solutions.map(sol => sol.join(',')));
+        expect(solutionSet.size).toBe(solutions.length);
+    });
+
 });
