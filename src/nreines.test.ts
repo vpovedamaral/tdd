@@ -38,4 +38,8 @@ describe('resoudreNReines', () => {
         const solutions = resoudreNReines(2);
         expect(solutions).toEqual([]);
     });
+    test('n = 3 ne doit retourner aucune solution', () => {
+        const solutions = resoudreNReines(3);
+        expect(solutions).toEqual([]);
+    });
 });
