@@ -54,4 +54,16 @@ describe('resoudreNReines', () => {
             expect(estPlateauValide(plateau)).toBe(true);
         });
     });
+    test('n = 8 doit retourner 92 solutions valides', () => {
+        const solutions = resoudreNReines(8);
+        expect(solutions.length).toBe(92);
+        solutions.forEach(plateau => {
+            expect(plateau.length).toBe(8);
+            plateau.forEach(ligne => {
+                expect(ligne.length).toBe(8);
+                expect(/^[O#]+$/.test(ligne)).toBe(true);
+            });
+            expect(estPlateauValide(plateau)).toBe(true);
+        });
+    });
 });
