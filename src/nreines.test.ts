@@ -34,4 +34,8 @@ describe('resoudreNReines', () => {
         expect(solutions[0]).toEqual(['#']);
         expect(estPlateauValide(solutions[0])).toBe(true);
     });
+    test('n = 2 ne doit retourner aucune solution', () => {
+        const solutions = resoudreNReines(2);
+        expect(solutions).toEqual([]);
+    });
 });
