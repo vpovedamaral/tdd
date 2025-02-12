@@ -89,4 +89,9 @@ describe('resoudreNReines', () => {
         const solutionSet = new Set(solutions.map(sol => sol.join(',')));
         expect(solutionSet.size).toBe(solutions.length);
     });
+    test('Les solutions pour n = 6 doivent être uniques', () => {
+        const solutions = resoudreNReines(6);
+        const solutionSet = new Set(solutions.map(sol => sol.join(',')));
+        expect(solutionSet.size).toBe(solutions.length);
+    });
 });
