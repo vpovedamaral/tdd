@@ -66,4 +66,12 @@ describe('resoudreNReines', () => {
             expect(estPlateauValide(plateau)).toBe(true);
         });
     });
+    test('n = 0 doit retourner une solution unique (plateau vide)', () => {
+        const solutions = resoudreNReines(0);
+        // On considère qu'un plateau 0x0 possède une solution "vide"
+        expect(solutions.length).toBe(1);
+        expect(solutions[0]).toEqual([]);
+    });
+
+
 });
