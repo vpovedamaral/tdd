@@ -1,3 +1,5 @@
+import * as readline from "readline";
+
 export function resoudreNReines(taille: number): string[][] {
     const solutions: string[][] = [];
     const positions: number[] = new Array(taille).fill(-1);
@@ -7,7 +9,6 @@ export function resoudreNReines(taille: number): string[][] {
 
     function placerReinesSurLigne(ligne: number): void {
         if (ligne === taille) {
-
             const solution: string[] = [];
             for (let i = 0; i < taille; i++) {
                 let ligneStr = "";
@@ -19,7 +20,6 @@ export function resoudreNReines(taille: number): string[][] {
             solutions.push(solution);
             return;
         }
-
         for (let colonne = 0; colonne < taille; colonne++) {
             if (
                 colonnes.has(colonne) ||
@@ -28,7 +28,6 @@ export function resoudreNReines(taille: number): string[][] {
             ) {
                 continue;
             }
-
             positions[ligne] = colonne;
             colonnes.add(colonne);
             diagonalesPrincipales.add(ligne - colonne);
@@ -36,7 +35,6 @@ export function resoudreNReines(taille: number): string[][] {
 
             placerReinesSurLigne(ligne + 1);
 
-            // retirer la reine pour explorer d'autres possibilites
             positions[ligne] = -1;
             colonnes.delete(colonne);
             diagonalesPrincipales.delete(ligne - colonne);
@@ -46,4 +44,25 @@ export function resoudreNReines(taille: number): string[][] {
 
     placerReinesSurLigne(0);
     return solutions;
+}
+
+// Saisie utilisateur via la console
+if (require.main === module) {
+    const interfaceLecture = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+    });
+
+    interfaceLecture.question("Entrez la valeur de N : ", (reponse) => {
+        const taille = parseInt(reponse.trim(), 10);
+        if (isNaN(taille) || taille <= 0) {
+            console.error("Veuillez entrer un entier positif.");
+            interfaceLecture.close();
+            process.exit(1);
+        }
+        const solutions = resoudreNReines(taille);
+        console.log(`Nombre total de solutions pour N = ${taille} : ${solutions.length}`);
+        console.log(JSON.stringify(solutions, null, 2));
+        interfaceLecture.close();
+    });
 }
