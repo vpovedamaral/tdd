@@ -73,5 +73,9 @@ describe('resoudreNReines', () => {
         expect(solutions[0]).toEqual([]);
     });
 
-
+    test('Les solutions pour n = 4 doivent être uniques', () => {
+        const solutions = resoudreNReines(4);
+        const solutionSet = new Set(solutions.map(sol => sol.join(',')));
+        expect(solutionSet.size).toBe(solutions.length);
+    });
 });
